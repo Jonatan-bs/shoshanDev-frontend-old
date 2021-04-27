@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Header from './../../components/project/Header';
-import {Container, Text, Grid, Image} from './../../components/partials';
+import {Container, Text, Grid, Image, Heading} from './../../components/partials';
 import InfoBox from './../../components/project/partials/InfoBox';
 // import Content from './../../components/project/Content';
 import {motion, animatePresence} from "framer-motion"
@@ -13,6 +13,7 @@ import mq from "../../styles/breakpoints";
 import Layout from './../../components/Layout';
 import LoadingPage from './../../components/loadingPage';
 import animations from "./../../scripts/animations"
+import React, { useState, useEffect } from 'react';
 
 const ContainerMod = styled(Container)`
     display: flex;
@@ -42,25 +43,26 @@ const InfoBoxWrapMobile = styled(InfoBoxWrap)`
     `)}
 `
 
-const Project = ({project, menus}) => {
-    
+const Project = ({project, menus, error}) => {
+
     const router = useRouter()
     if(router.isFallback) {
         return <LoadingPage/>
     }
 
     // This includes setting the noindex header because static files always return a status 200 but the rendered not found page page should obviously not be indexed
-    if( !project || project.error) {
+    if( error ) {
+        
         return (
         <>
             <Head>
                 <meta name="robots" content="noindex"/>
             </Head>
-            <DefaultErrorPage statusCode={404} />
+            <DefaultErrorPage statusCode={error.status || 500} />
         </>
         )
     }
-    
+
 
     return (
         <motion.div 
@@ -95,16 +97,29 @@ export default Project;
 
 export async function getStaticProps({params}){
     const {slug} = params
-    let project = await fetchAPI('/projects?slug=' + slug)
+    try{
+    
+        let project = await fetchAPI('/projects?slug=' + slug)
         
-    project = project.length? project.error || project[0] : null
-    return {props: {project}, revalidate: 5}    
+        project = project.length? project.error || project[0] : null
+        return {props: {project}, revalidate: 5}
+
+    }catch({status}){
+        return { props: error }
+    }
 }
 
 export async function getStaticPaths() {
-    let projects = await fetchAPI('/projects')
-    return {
-      paths: projects?.map((project) => `/project/${project.slug}`) || [],
-      fallback: true,
+    try{
+        let projects = await fetchAPI('/projects')
+        return {
+            paths: projects?.map((project) => `/project/${project.slug}`) || [],
+            fallback: true,
+        }
+    }catch{
+        return {
+            paths: [],
+            fallback: true,
+        }
     }
   }
