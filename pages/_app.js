@@ -17,8 +17,8 @@ function MyApp({ Component, pageProps, router }) {
     AOS.init({
       easing: "ease-out-cubic",
       // once: true,
-      offset: 100,
-      delay:100
+      offset: 150,
+      delay:0
     });
   }, []);
 
