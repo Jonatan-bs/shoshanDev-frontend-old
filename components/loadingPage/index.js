@@ -98,13 +98,6 @@ const variants = {
 }
 
 const LoadingPage = () => {
-    useEffect(() => {
-    console.log('hello')        
-    return () => {
-    console.log('Goodbye')        
-    // Anything in here is fired on component unmount.
-        }
-    }, [])
     
     return (
     
