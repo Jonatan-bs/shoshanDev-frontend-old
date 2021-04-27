@@ -22,11 +22,11 @@ const Logo = styled(Image).attrs(({light})=>({ src:`/images/${light? "logo-light
 `
 
 
-const HeaderLogo = ({light}) => (
+const HeaderLogo = ({light, priority}) => (
     <Wrap>
         <Link href="/" width="100%">
             <LogoWrap>
-                <Logo light={light}/>
+                <Logo priority light={light}/>
             </LogoWrap>
         </Link>
     </Wrap>
