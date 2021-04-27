@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_partials_lists",
+  "info": {
+    "name": "list",
+    "icon": "arrow-circle-right",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "entry": {
+      "type": "string"
+    },
+    "bullet": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}

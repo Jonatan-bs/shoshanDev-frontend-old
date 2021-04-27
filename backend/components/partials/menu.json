@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_partials_menus",
+  "info": {
+    "name": "menu",
+    "icon": "angle-right"
+  },
+  "options": {},
+  "attributes": {
+    "menuItem": {
+      "type": "component",
+      "repeatable": true,
+      "component": "partials.menu-link"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

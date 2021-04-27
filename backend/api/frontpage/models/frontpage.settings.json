@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "frontpages",
+  "info": {
+    "name": "Frontpage",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "subtext": {
+      "type": "string"
+    },
+    "contactBox": {
+      "type": "component",
+      "repeatable": false,
+      "component": "page-content.contact-box"
+    },
+    "services": {
+      "type": "component",
+      "repeatable": true,
+      "component": "partials.service-card"
+    }
+  }
+}

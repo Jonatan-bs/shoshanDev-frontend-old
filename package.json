@@ -1,0 +1,26 @@
+{
+  "name": "shoshanDev",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Jonatan-bs/shoshanDev",
+  "author": "Jonatan Shoshan <jonatan-bs@live.dk>",
+  "license": "MIT",
+  "dependencies": {
+    "aos": "^2.3.4",
+    "babel-plugin-styled-components": "^1.12.0",
+    "framer-motion": "^3.7.0",
+    "isomorphic-dompurify": "^0.13.0",
+    "isomorphic-unfetch": "^3.1.0",
+    "marked": "^2.0.1",
+    "next": "^10.0.6",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.1"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export"
+  }
+}

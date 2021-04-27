@@ -1,0 +1,42 @@
+{
+  "collectionName": "components_page_content_image_and_texts",
+  "info": {
+    "name": "imageAndText",
+    "icon": "archway",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "richtext"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "imageRight": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "aspectRatio": {
+      "type": "float",
+      "min": 0
+    },
+    "cover": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "imageBG": {
+      "type": "string"
+    }
+  }
+}

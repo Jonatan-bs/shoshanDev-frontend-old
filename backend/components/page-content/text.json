@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_page_content_texts",
+  "info": {
+    "name": "text",
+    "icon": "bookmark"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

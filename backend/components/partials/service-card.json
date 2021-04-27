@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_page_content_service_cards",
+  "info": {
+    "name": "serviceCard",
+    "icon": "angle-double-right",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "symbol": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "price": {
+      "type": "string"
+    },
+    "subtext": {
+      "type": "string"
+    },
+    "link": {
+      "model": "page"
+    },
+    "elements": {
+      "type": "component",
+      "repeatable": true,
+      "component": "partials.list"
+    }
+  }
+}

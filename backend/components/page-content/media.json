@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_page_content_media",
+  "info": {
+    "name": "media",
+    "icon": "ad",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "media": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "width": {
+      "type": "string"
+    },
+    "maxWidth": {
+      "type": "string"
+    },
+    "paddingX": {
+      "type": "float",
+      "min": 0
+    },
+    "hideOnDevice": {
+      "type": "component",
+      "repeatable": false,
+      "component": "partials.hide-on-device"
+    }
+  }
+}

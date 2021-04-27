@@ -1,0 +1,70 @@
+{
+  "kind": "collectionType",
+  "collectionName": "project",
+  "info": {
+    "name": "Project",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "component",
+      "repeatable": true,
+      "component": "projects.project-elements"
+    },
+    "text": {
+      "type": "richtext"
+    },
+    "info": {
+      "type": "component",
+      "repeatable": true,
+      "component": "projects.info-component"
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "headerImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "slug": {
+      "type": "string"
+    },
+    "bgColor": {
+      "type": "string"
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "page-content.banner",
+        "page-content.heading",
+        "page-content.small-boxes",
+        "page-content.image-and-text",
+        "page-content.text",
+        "page-content.media"
+      ]
+    }
+  }
+}

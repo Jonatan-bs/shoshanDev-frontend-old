@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_page_content_small_boxes",
+  "info": {
+    "name": "small boxes",
+    "icon": "align-left",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "smallBox": {
+      "type": "component",
+      "repeatable": true,
+      "component": "partials.small-box"
+    }
+  }
+}

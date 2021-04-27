@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_partials_hide_on_devices",
+  "info": {
+    "name": "hideOnDevice",
+    "icon": "allergies"
+  },
+  "options": {},
+  "attributes": {
+    "sm": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "md": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "lg": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "xl": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}
