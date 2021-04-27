@@ -10,9 +10,24 @@ import App from 'next/app'
 import Layout from './../components/Layout';
 import animations from "./../scripts/animations"
 import {motion, AnimatePresence} from "framer-motion"
+import Head from 'next/head'
+import DefaultErrorPage from 'next/error'
 
 
-const Index = ({projects, frontpage, menus}) => (
+const Index = ({projects, frontpage, menus, error}) => {
+    if( error ) {
+        
+        return (
+        <>
+            <Head>
+                <meta name="robots" content="noindex"/>
+            </Head>
+            <DefaultErrorPage statusCode={error.status || 500} />
+        </>
+        )
+    }
+
+    return(
     <motion.div 
         initial="initial"      
         animate="animate"      
@@ -31,14 +46,18 @@ const Index = ({projects, frontpage, menus}) => (
         </Layout>
     
     </motion.div>
-)
+)}
 
 export default Index;
 
 
 export async function getStaticProps({params}){
-    const projects = await fetchAPI('/projects');
-    const frontpage = await fetchAPI('/frontpage');
-
-    return {props: {projects, frontpage}, revalidate: 5}    
+    try{
+        const projects = await fetchAPI('/projects');
+        const frontpage = await fetchAPI('/frontpage');
+        return {props: {projects, frontpage}, revalidate: 5}    
+    } catch(error){
+        return { props: error }
+    }
+    
 }

@@ -45,7 +45,7 @@ const ImageAndText = styled.div`
     }
 `
 
-const Page = ({page, menus}) => {
+const Page = ({page, menus, error}) => {
     
     const router = useRouter()
 
@@ -54,13 +54,14 @@ const Page = ({page, menus}) => {
     }
 
     // This includes setting the noindex header because static files always return a status 200 but the rendered not found page page should obviously not be indexed
-    if( !page || page.error) {
+    if( error ) {
+        
         return (
         <>
             <Head>
                 <meta name="robots" content="noindex"/>
             </Head>
-            <DefaultErrorPage statusCode={404} />
+            <DefaultErrorPage statusCode={error.status || 500} />
         </>
         )
     }
@@ -87,27 +88,41 @@ export default Page;
 
 export async function getStaticProps({params}){
     const {slug1, slug2} = params
-    let page = await fetchAPI('/pages?no_front=false&&full_slug=' + slug1 + "/" + slug2)
-    
-
-    page = page.length? page.error || page[0] : null
-
-    return {
-        props: {
-            page
-        },
-        revalidate: 5
-    }    
+    try{
+   
+        let page = await fetchAPI('/pages?no_front=false&&full_slug=' + slug1 + "/" + slug2)
+        
+        
+        page = page.length? page.error || page[0] : null
+        
+        return {
+            props: {
+                page
+            },
+            revalidate: 5
+        }    
+    }catch(error){
+        return { props: {
+            error
+        } }
+    }
 }
 
 export async function getStaticPaths() {
-    let pages = await fetchAPI('/pages?no_front=false');
+    try{
+        let pages = await fetchAPI('/pages?no_front=false');
 
-    //Only get pages whit one parent
-    let filteredPages = pages?.filter((page) => page.full_slug.split('/').length === 2 ) || [];
-    
-    return {
-      paths: filteredPages?.map((page) => `/${page.full_slug}`) || [],
-      fallback: true,
+        //Only get pages whit one parent
+        let filteredPages = pages?.filter((page) => page.full_slug.split('/').length === 2 ) || [];
+        
+        return {
+            paths: filteredPages?.map((page) => `/${page.full_slug}`) || [],
+            fallback: true,
+        }
+    }catch{
+        return {
+            paths: [],
+            fallback: true,
+        }
     }
 }

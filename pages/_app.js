@@ -12,7 +12,7 @@ import Head from "next/head"
 
 
 
-function MyApp({ Component, pageProps, router }) {
+function MyApp({ Component, pageProps, router, error }) {
   useEffect(() => {
     AOS.init({
       easing: "ease-out-cubic",
@@ -21,6 +21,18 @@ function MyApp({ Component, pageProps, router }) {
       delay:0
     });
   }, []);
+
+  if( error ) {
+        
+    return (
+    <>
+        <Head>
+            <meta name="robots" content="noindex"/>
+        </Head>
+        <DefaultErrorPage statusCode={error.status || 500} />
+    </>
+    )
+  }
 
     return (
       <>           
@@ -56,11 +68,18 @@ function MyApp({ Component, pageProps, router }) {
   //
   MyApp.getInitialProps = async (appContext) => {
     // calls page's `getInitialProps` and fills `appProps.pageProps`
-    let appProps = await App.getInitialProps(appContext);
-    let menus = await fetchAPI('/menus')
-    appProps = {...appProps.pageProps, menus: {footerLeft: menus.footerLeft ,footerRight: menus.footerRight } }
-    
-    return { pageProps: appProps }
+
+    try{
+      let appProps = await App.getInitialProps(appContext);
+      let menus = await fetchAPI('/menus')
+      appProps = {...appProps.pageProps, menus: {footerLeft: menus.footerLeft ,footerRight: menus.footerRight } }
+      
+      return { pageProps: appProps }
+      
+    } catch(error){
+
+      return { pageProps: {appProps: {error} }}
+    }
   }
   
   export default MyApp
