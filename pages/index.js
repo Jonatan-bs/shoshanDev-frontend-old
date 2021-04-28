@@ -38,11 +38,11 @@ const Index = ({projects, frontpage, menus, error}) => {
 
         <Layout menus={menus}>
             
-            <Header subtext={(!frontpage || frontpage.error || !frontpage.subtext  ) ? [] :frontpage.subtext}/>
-            <Services services={frontpage.services}/>
-            <Projects projects={(!projects || projects.error )? [] : projects }/>
+            <Header subtext={frontpage?.subtext || []}/>
+            <Services services={frontpage.services || []}/>
+            <Projects projects={projects || [] }/>
             <Method/>
-            <Contact contactBox={frontpage.contactBox}/>
+            <Contact contactBox={frontpage.contactBox || {}}/>
         </Layout>
     
     </motion.div>
