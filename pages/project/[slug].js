@@ -87,7 +87,7 @@ const Project = ({project, menus, error}) => {
                         <InfoBox entries={project.info}/>
                     </InfoBoxWrap>
                 </ContainerMod>
-                <DynamicContent content={project.content}/>   
+                <DynamicContent content={project.content || []}/>   
             </Layout>
         </motion.div>
     )
@@ -99,13 +99,14 @@ export async function getStaticProps({params}){
     const {slug} = params
     try{
     
-        let project = await fetchAPI('/projects?slug=' + slug)
+        let project = await fetchAPI('/projects/slug/slug')
         
-        project = project.length? project.error || project[0] : null
         return {props: {project}, revalidate: 5}
 
-    }catch({status}){
-        return { props: error }
+    }catch(error){
+        return { props: {
+            error
+        } }
     }
 }
 

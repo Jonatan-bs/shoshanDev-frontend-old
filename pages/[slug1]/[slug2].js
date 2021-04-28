@@ -78,7 +78,7 @@ const Page = ({page, menus, error}) => {
                     <HeaderLogo/>
                     {page.hide_title || <Header title={page.title}/>}
                     
-                    <DynamicContent content={page.content || {}}/>
+                    <DynamicContent content={page.content || []}/>
             </Layout> 
         </motion.div>
     )
@@ -90,11 +90,12 @@ export async function getStaticProps({params}){
     const {slug1, slug2} = params
     try{
    
-        let page = await fetchAPI('/pages?no_front=false&&full_slug=' + slug1 + "/" + slug2)
-        
-        
+        let page = await fetchAPI(`/pages/slug/${slug1}/${slug2}?no_front=false`)
+
         page = page.length? page.error || page[0] : null
         
+
+
         return {
             props: {
                 page

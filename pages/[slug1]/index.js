@@ -46,7 +46,6 @@ const ImageAndText = styled.div`
 `
 
 const Page = ({page, menus, error}) => {
-    
     const router = useRouter()
 
     if(router.isFallback) {
@@ -54,14 +53,14 @@ const Page = ({page, menus, error}) => {
     }
 
     // This includes setting the noindex header because static files always return a status 200 but the rendered not found page page should obviously not be indexed
-    if( error ) {
+    if( error, !page ) {
         
         return (
         <>
             <Head>
                 <meta name="robots" content="noindex"/>
             </Head>
-            <DefaultErrorPage statusCode={error.status || 500} />
+            <DefaultErrorPage statusCode={error.status || !page && 404 || 500} />
         </>
         )
     }
@@ -74,11 +73,10 @@ const Page = ({page, menus, error}) => {
         variants={animations.pageTransition}
         onAnimationComplete={animations.scrollTop}
         >
-
             <Layout menus={menus}>  
                     <HeaderLogo/>
                     {page.hide_title || <Header title={page.title}/>}
-                    <DynamicContent content={page.content || {}}/>
+                    <DynamicContent content={page?.content || []}/>
             </Layout> 
         </motion.div>
     )
@@ -86,12 +84,10 @@ const Page = ({page, menus, error}) => {
 
 export default Page;
 
-export async function getStaticProps({params}){
-    const {slug1} = params
+export async function getStaticProps(ctx){
+    const {slug1} = ctx.params
     try{
-        let page = await fetchAPI('/pages?no_front=false&&slug=' + slug1)
-        
-        page = page.length? page.error || page[0] : null
+        let page = await fetchAPI(`/pages/slug/${slug1}?no_front=false`)
 
         return {
             props: {
@@ -100,9 +96,11 @@ export async function getStaticProps({params}){
             revalidate: 5
         }   
         
-
     }catch(error){
-        return { props: error }
+        
+        return { props: {
+            error
+        } }
     }
 }
 
@@ -113,7 +111,6 @@ export async function getStaticPaths() {
 
         //Only get pages whit one parent
         let filteredPages = pages?.filter((page) => page.full_slug.split('/').length === 1 ) || [];
-
         return {
         paths: filteredPages?.map((page) => `/${page.full_slug}`) || [],
         fallback: true,
