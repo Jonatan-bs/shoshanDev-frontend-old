@@ -90,12 +90,8 @@ export async function getStaticProps({params}){
     const {slug1, slug2} = params
     try{
    
-        let page = await fetchAPI(`/pages/slug/${slug1}/${slug2}?no_front=false`)
-
-        page = page.length? page.error || page[0] : null
+        let page = await fetchAPI(`/pages/slug/${slug1}%2F${slug2}?no_front=false`)
         
-
-
         return {
             props: {
                 page
@@ -113,6 +109,7 @@ export async function getStaticPaths() {
     try{
         let pages = await fetchAPI('/pages?no_front=false');
 
+        
         //Only get pages whit one parent
         let filteredPages = pages?.filter((page) => page.full_slug.split('/').length === 2 ) || [];
         

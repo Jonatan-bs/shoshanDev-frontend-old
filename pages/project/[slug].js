@@ -99,7 +99,7 @@ export async function getStaticProps({params}){
     const {slug} = params
     try{
     
-        let project = await fetchAPI('/projects/slug/slug')
+        let project = await fetchAPI(`/projects/slug/${slug}`)
         
         return {props: {project}, revalidate: 5}
 
