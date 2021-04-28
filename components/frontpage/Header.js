@@ -41,13 +41,17 @@ const ZIndex = styled.div`
     z-index: 4;
 `
 const lightLineAnimation = keyframes`
-    0% { top: -80%; left: -100%;  }
-    30% { top: -80%; left: 120%; }
-    100% { top: -80%; left: 120%; }
+
+    // 0% { top: -80%; left: -100%;  }
+    // 30% { top: -80%; left: 120%; }
+    // 100% { top: -80%; left: 120%; }
+    0% { transform: translateX(-470%) rotate(-25deg); }
+    30% { transform: translateX(470%) rotate(-25deg);  }
+    100% { transform: translateX(470%) rotate(-25deg);  }
 `
 
 const LightLine = styled.div`
-    top: -80%; left: -40%;    
+    // top: -80%; left: -40%;    
     height: 200%;
     width: 100px;
     background: #fff;
