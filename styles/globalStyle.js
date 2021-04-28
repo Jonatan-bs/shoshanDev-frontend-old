@@ -32,6 +32,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: inherit;
   }
 
+
   body,
   h1,
   h2,

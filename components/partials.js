@@ -4,6 +4,8 @@ import marked from "marked";
 import DOMPurify from 'isomorphic-dompurify';
 import NextImage from 'next/image'
 import mq from "../styles/breakpoints";
+import { buildUrl } from 'cloudinary-build-url';
+import React, { useState, useEffect } from 'react';
 
 //Adjustment templates
 const templates = {
@@ -207,10 +209,64 @@ const MyImage = styled(NextImage)`
     ${ ({mb}) => mb && "margin-bottom:" + mb*50 + "px"};
 
 `
+const ImageWrap = styled.div`
+    align-self: center;
+    position: relative; 
+    // width: 100%;
+    // height: 100%;
 
-export const Image = (props) => (
-        <MyImage props={props} width={props.width} height={props.height} src={props.src} alt={props.alt} priority={props.priority} layout={props.layout} objectFit={props.objectFit}/>
-)
+    &.layout{
+        position: static;
+        width: 100%;
+        height: 100%
+    }
+    
+    &>div:nth-of-type(2){
+        position: absolute !important;
+        top: 0;
+        opacity: 1;
+        left:0;
+        transition: all 1s;
+        transition-delay: .2s;
+    }
+    &>div:nth-of-type(1){
+        opacity: 0;
+        transition: all 1s;
+
+    }
+
+    &.loaded{
+        &>div:nth-of-type(2){
+            opacity: 0;
+        }
+        &>div:nth-of-type(1){
+            opacity: 1;
+        }
+    }
+`
+
+
+
+
+export const Image = (props) => {
+    const [imgLoaded, setImgLoaded] = useState(false);
+
+    // Similar to componentDidMount and componentDidUpdate:
+    useEffect(() => {
+        
+
+    });
+    
+ 
+
+    return (
+    <>
+        <ImageWrap className={`${imgLoaded && "loaded"} ${props.layout && "layout"} `}>
+            <MyImage  props={props} onLoad={()=>{ setTimeout(()=>{setImgLoaded(true); console.log('done')}, 5000)}} width={props.width} height={props.height} src={props.src?.url || props.src} alt={props.alt} priority={props.priority} layout={props.layout} objectFit={props.objectFit}/>
+            <MyImage  props={props} width={props.width} height={props.height} src={props.src?.placeholder || props.src} alt={props.alt} priority={props.priority} layout={props.layout} objectFit={props.objectFit}/>
+        </ImageWrap>
+    </>)
+}
 
 //
 //  Section

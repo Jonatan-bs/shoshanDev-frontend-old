@@ -45,11 +45,11 @@ const ProjectWrap = styled('div')`
     `)}
 `
 const AspectRatioMod = styled(AspectRatio)`
-    .hoverTarget>div{
+    .hoverTarget>div>div{
         transition: all .5s;
     }
     &:hover{
-        .hoverTarget>div{
+        .hoverTarget>div>div{
             transform: scale(1.07);
         }
     }
