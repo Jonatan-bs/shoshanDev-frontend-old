@@ -262,8 +262,8 @@ export const Image = (props) => {
     return (
     <>
         <ImageWrap className={`${imgLoaded && "loaded"} ${props.layout && "layout"} `}>
-            <MyImage  props={props} onLoad={()=>{ setTimeout(()=>{setImgLoaded(true); console.log('done')}, 5000)}} width={props.width} height={props.height} src={props.src?.url || props.src} alt={props.alt} priority={props.priority} layout={props.layout} objectFit={props.objectFit}/>
-            <MyImage  props={props} width={props.width} height={props.height} src={props.src?.placeholder || props.src} alt={props.alt} priority={props.priority} layout={props.layout} objectFit={props.objectFit}/>
+            <MyImage  props={props} onLoad={()=>{ setImgLoaded(true)}} width={props.width} height={props.height} src={props.src?.url || props.src} alt={props.alt} priority={props.priority} layout={props.layout} objectFit={props.objectFit}/>
+            <MyImage  props={props} width={props.width} height={props.height} src={props.src?.placeholder || props.src} alt={props.alt} priority={true} layout={props.layout} objectFit={props.objectFit}/>
         </ImageWrap>
     </>)
 }
