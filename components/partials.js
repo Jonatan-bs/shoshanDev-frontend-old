@@ -209,33 +209,20 @@ const MyImage = styled(NextImage)`
     ${ (props)=>templates.padding(props) }
     ${ ({width}) => width ? "width:" + width : "width: 100%"};
     ${ ({mb}) => mb && "margin-bottom:" + mb*50 + "px"};
-    &.loaded{
-        background: none !important;    
-    }
+
 `
 
 
 
 
-export const Image = (props) => {
-    const [imgLoaded, setImgLoaded] = useState(false);
-
-    // Similar to componentDidMount and componentDidUpdate:
-    useEffect(() => {
-        imgPlaceholder()
-    });
-    
+export const Image = (props) => {   
 
     return (
     <>
         <MyImage 
-            className={props.src?.placeholder && imgLoaded? "loaded" : "placeholder"} 
             props={props} 
-            onLoad={()=>{ setImgLoaded(true)}} 
             width={props.width} 
             height={props.height} 
-            data-placeholder={props.src?.placeholder} 
-            data-fit={props.objectFit}
             src={props.src?.url || props.src} 
             alt={props.alt} 
             priority={props.priority} 
