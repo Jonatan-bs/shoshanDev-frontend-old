@@ -57,7 +57,7 @@ const LightLine = styled.div`
     background: #fff;
     z-index: 2;
     position: absolute;
-    transform: rotate(-25deg);
+    transform: transform: translateX(-470%) rotate(-25deg);
     filter: blur(20px);
     opacity: .1;
     animation-name: ${lightLineAnimation};
