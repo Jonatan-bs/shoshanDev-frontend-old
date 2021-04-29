@@ -80,7 +80,7 @@ const DynamicContent = ({content}) => {
                     <SmallBoxes>
                         {component.smallBox.map( (box,i) => (
                             <SmallBox key={i} data-aos="fade-up" color={box.bgColor} bgImage={box.image && getStrapiMedia(box.image)}>
-                                <Image src={getStrapiMedia(box.image)} layout="fill" objectFit="contain"/>
+                                <Image src={getStrapiMedia(box.image)}  alt={box.image.alternativeText} layout="fill" objectFit="contain"/>
                                 { box.title && !box.image && <Text bold size="md">{box.title}</Text> }
                             </SmallBox>
                         ))}
@@ -105,6 +105,7 @@ const DynamicContent = ({content}) => {
                                         height={component.media.height} 
                                         width={component.media.width}
                                         data-aos="fade-up"
+                                        alt={component.media.alternativeText}
                                     />
                                     
                                 }
@@ -127,7 +128,7 @@ const DynamicContent = ({content}) => {
                     <Container key={i} pb="2">
                         <ImageAndText className={component.imageRight && "imageRight" }> 
                             {component.image && (<AspectRatioMod bgColor={component.imageBG} pct={component.aspectRatio || (component.image.height/component.image.width*100)} desktop={component.cover}>
-                                <Image layout="fill" objectFit={component.cover? "cover" : "contain"} src={getStrapiMedia(component.image)}/>
+                                <Image layout="fill" objectFit={component.cover? "cover" : "contain"} src={getStrapiMedia(component.image)} alt={component.image.alternativeText}/>
                             </AspectRatioMod>) }        
                             {component.text && <Markdown>{component.text}</Markdown> }
 

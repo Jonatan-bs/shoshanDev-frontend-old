@@ -35,7 +35,7 @@ const InfoBox = ({entries}) => {
                 return <Text  as="h3" key={i} pt=".4" bold>{entry.entry}:</Text>
             } else if( entry.length ){
                 return(
-                    <ul>
+                    <ul key={i}>
                         {
                             entry.map((e,i) => <li key={i}><Text>{e.entry}</Text></li>)
                         }

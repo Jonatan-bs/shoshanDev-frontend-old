@@ -42,7 +42,8 @@ const Contact = ({contactBox}) => (
         <Container pb="3">
             <ContactCard>
                 <ContactImage maxWidth="400px" pct="100" circle> 
-                   {contactBox?.image && <Image layout="fill" objectFit="cover" src={getStrapiMedia(contactBox.image)}/> }
+                {console.log(contactBox.image)}
+                   {contactBox?.image && <Image layout="fill" objectFit="cover" src={getStrapiMedia(contactBox.image)} alt={contactBox.image.alternativeText}/> }
                 </ContactImage>
                 <TextWrap>
                     <Heading as="h3"  py={0.5} size="lg">

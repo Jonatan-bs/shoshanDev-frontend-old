@@ -113,7 +113,7 @@ const LoadingPage = () => {
                 {/* <RoseWrap>
                     <Rose width="730" height="494" src="/images/rose.jpg" priority/>
                 </RoseWrap> */}
-                <Image width="100" height="100" src="/images/loader.gif" priority/>
+                <Image width="100" height="100" src="/images/loader.gif" alt="Loader" priority/>
                 <LogoWrap>
                     <Logo/> 
                 </LogoWrap>

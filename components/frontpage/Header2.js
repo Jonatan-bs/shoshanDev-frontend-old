@@ -45,7 +45,7 @@ const Header = ({subtext}) => (
             <HeaderWrap> 
                 <ContainerMod py="1"> 
                     <motion.div variants={animation.fade}  >
-                        <Rose width="730" height="494" src="/images/rose-red-bg.jpg" priority/>
+                        <Rose width="730" height="494" src="/images/rose-red-bg.jpg" alt="rose background" priority/>
                     </motion.div>
                     <motion.div variants={animation.stagger}>
                         <motion.div variants={animation.fadeUp}  style={{width:"100%"}}>

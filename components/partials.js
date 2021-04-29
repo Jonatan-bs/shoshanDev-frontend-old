@@ -370,5 +370,5 @@ export const Vignette = styled.div`
 //
 
 
-export const Logo = styled(Image).attrs(({light})=>({ src:`/images/${light? "logo-light.svg":"logo.svg" }`, alt: "Shoshan Development", width: "330", height: "73" }))`
+export const Logo = styled(Image).attrs(({light})=>({ src:`/images/${light? "logo-light.svg":"logo.svg" }`, alt: "Shoshan Development Logo", width: "330", height: "73" }))`
 `

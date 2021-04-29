@@ -95,7 +95,7 @@ const Footer = ({menus}) => (
                 
                 <Left>
                     <LogoWrap>
-                        <Image src="/images/logo-light.svg" width="1000" height="221" mb="9" />
+                        <Image src="/images/logo-light.svg" alt="Logo" width="1000" height="221" mb="9" />
                     </LogoWrap>
                     <Text color="light" size="sm">
                         Søndermarksvej 114 stmf.<br/>

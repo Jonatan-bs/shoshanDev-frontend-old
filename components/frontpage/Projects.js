@@ -63,7 +63,7 @@ const Projects = ({projects}) => (
                 <Link href={"/project/" + project.slug}>
                             <AspectRatioMod gradient size="cover" bgColor={project.bgColor || "#333"} pct="80">
                                 <div className="hoverTarget">
-                                    <Image layout="fill" objectFit="cover" src={getStrapiMedia(project.thumbnail)}/>
+                                    <Image layout="fill" objectFit="cover" src={getStrapiMedia(project.thumbnail)} alt={project.thumbnail.alternativeText}/>
                                 </div>
                                 
                                 <TextWrap className="textWrap">

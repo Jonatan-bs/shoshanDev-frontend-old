@@ -80,7 +80,7 @@ const Header = ({subtext}) => (
                     <LightLine/>
                     <Vignette pct="60" z="3"/>
                     <RoseWrap>
-                        <Rose width="730" height="494" src="/images/rose-black-bg.jpg" priority/>
+                        <Rose width="730" height="494" src="/images/rose-black-bg.jpg" alt="Rose Background" priority/>
                     </RoseWrap>
                     <ZIndex>
                         <motion.div variants={animation.stagger}>
