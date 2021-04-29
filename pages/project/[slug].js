@@ -73,7 +73,7 @@ const Project = ({project, menus, error}) => {
         onAnimationComplete={animations.scrollTop}
         >
             <Layout menus={menus}>     
-                <Header src={getStrapiMedia(project.headerImage)} bgColor={project.bgColor || "#333"} title={project.title} subtitle={project.subtitle}/>
+                <Header src={getStrapiMedia(project.headerImage)} alt={project.headerImage.alternativeText} bgColor={project.bgColor || "#333"} title={project.title} subtitle={project.subtitle}/>
                 <ContainerMod py="3"> 
                     <InfoBoxWrapMobile  data-aos="fade-left">
                         <InfoBox entries={project.info}/>
