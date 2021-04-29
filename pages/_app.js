@@ -9,7 +9,27 @@ import {motion, AnimatePresence} from "framer-motion"
 import { getStrapiMedia, fetchAPI } from "../lib/api";
 import App from 'next/app'
 import Head from "next/head"
+import styled from "styled-components";
+// import {Container, Text, Grid, Image, Heading} from './../components/partials';
+import {Container, Text, Grid, Image, Heading} from './../components/partials';
 
+const Infobar = styled.div`
+    padding: 10px;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index: 100;
+    background: #333;
+    text-align: center;
+    &>p{
+      color: #fff;
+    }
+`
+const InfobarMargin = styled.div`
+    padding: 10px;
+    opacity:0;
+`
 
 
 function MyApp({ Component, pageProps, router, error }) {
@@ -36,6 +56,12 @@ function MyApp({ Component, pageProps, router, error }) {
 
     return (
       <>           
+      {process.env.NODE_ENV==="development"&&(
+        <>
+          <Infobar><p>Development mode</p></Infobar>
+          <InfobarMargin><p>Development mode</p></InfobarMargin>
+        </>
+      )}
         <Head>
           <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png"/>
           <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png"/>
