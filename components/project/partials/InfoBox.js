@@ -7,11 +7,44 @@ const Info = styled.div`
     align-self: baseline;
 `
 
-const InfoBox = ({entries}) => (
+const InfoBox = ({entries}) => {
+    let separateLists = [], counter = 0;
+
+    entries.forEach( (entry,i) =>{
+        let a = i+1;
+
+        if(entries.length===a ){ 
+            separateLists.push(entries.slice(counter,a))
+        } 
+        else if(entry.heading){
+            separateLists.push(entries.slice(counter,a-1)), 
+            separateLists.push(entry), 
+            counter=a
+        }
+            
+    })
+
+   
+    
+
+    
+    return (
     <Info>
-            <ul>
-                {entries.map( (e,i) => !e.heading? (<li key={i}><Text>{e.entry}</Text></li>) : (<span key={i}><br/><li> <Text><Span bold>{e.entry}:</Span></Text></li></span>))}
-            </ul>
+        {separateLists.map((entry,i) => {
+            if(entry.heading){
+                return <Text  as="h3" key={i} pt=".4" bold>{entry.entry}:</Text>
+            } else if( entry.length ){
+                return(
+                    <ul>
+                        {
+                            entry.map((e,i) => <li key={i}><Text>{e.entry}</Text></li>)
+                        }
+                    </ul>
+                )
+            }
+
+
+        })}
     </Info>
-) 
+) }
 export default InfoBox
