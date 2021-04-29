@@ -74,11 +74,15 @@ const Page = ({page, menus, error}) => {
         variants={animations.pageTransition}
         onAnimationComplete={animations.scrollTop}
         >
-            <Layout menus={menus}>  
-                    <HeaderLogo/>
-                    {page.hide_title || <Header title={page.title}/>}
-                    
-                    <DynamicContent content={page.content || []}/>
+            <Layout menus={menus}> 
+                <Head>
+                    <title>{page?.titleAndMeta?.title? `Shoshan Development - ${page.titleAndMeta.title}` : "Shoshan Development"}</title>
+                    <meta name="description" content={page?.titleAndMeta?.metaDescription || ""}></meta>
+                </Head> 
+                <HeaderLogo/>
+                {page.hide_title || <Header title={page.title}/>}
+                
+                <DynamicContent content={page.content || []}/>
             </Layout> 
         </motion.div>
     )

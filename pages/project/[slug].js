@@ -72,7 +72,11 @@ const Project = ({project, menus, error}) => {
         variants={animations.pageTransition}
         onAnimationComplete={animations.scrollTop}
         >
-            <Layout menus={menus}>     
+            <Layout menus={menus}>
+                <Head>
+                    <title>{project?.titleAndMeta?.title ? `Shoshan Development - ${project.titleAndMeta.title}` : "Shoshan Development"}</title>
+                    <meta name="description" content={project?.titleAndMeta?.metaDescription || "Case"}></meta>
+                </Head>     
                 <Header src={getStrapiMedia(project.headerImage)} alt={project.headerImage.alternativeText} bgColor={project.bgColor || "#333"} title={project.title} subtitle={project.subtitle}/>
                 <ContainerMod py="3"> 
                     <InfoBoxWrapMobile  data-aos="fade-left">

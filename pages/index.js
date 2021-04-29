@@ -37,7 +37,10 @@ const Index = ({projects, frontpage, menus, error}) => {
     >
 
         <Layout menus={menus}>
-            
+            <Head>
+                <title>{frontpage?.titleAndMeta?.title || "Shoshan Development"}</title>
+                <meta name="description" content={frontpage?.titleAndMeta?.metaDescription || "Professionel webudvikler"}></meta>
+            </Head>
             <Header subtext={frontpage?.subtext || []}/>
             <Services services={frontpage.services || []}/>
             <Projects projects={projects || [] }/>
