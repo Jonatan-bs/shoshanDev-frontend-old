@@ -50,7 +50,7 @@ const Services = ({services}) => (
                     <Link href={service?.link?.full_slug ? "/" + service.link.full_slug : "#"} color="dark">
                             <ServiceCard key={i}> 
                                     {service.symbol && <Image src={getStrapiMedia(service.symbol)} alt={service.symbol.alternativeText} width="100px" height="100px" />}
-                                    <Heading center as="h4" py={.2} size="md" caps>{service.title}</Heading>
+                                    <Heading center as="h3" py={.2} size="md" caps>{service.title}</Heading>
                                     {service.elements && <Text color="dark3" size="xs" mb="0" > {service.elements?.map( ({entry, bullet}, i) =>(<span key={i}>{ entry + ((service.elements.length)>i+1? ", " : "")}</span>))}</Text>}
                                     <Price bold center size="sm">{service.price}</Price>
                                     {service.subtext && <Text italic color="dark3" size="xs" center>{service.subtext}</Text>}
