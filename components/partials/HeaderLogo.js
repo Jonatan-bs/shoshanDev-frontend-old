@@ -26,7 +26,7 @@ const HeaderLogo = ({light, priority}) => (
     <Wrap>
         <Link href="/" width="100%">
             <LogoWrap>
-                <Logo priority light={light}/>
+                <Logo priority={priority} light={light}/>
             </LogoWrap>
         </Link>
     </Wrap>

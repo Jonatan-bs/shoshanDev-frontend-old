@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { keyframes } from 'styled-components'
 import mq from "../../styles/breakpoints";
-import {AspectRatio, Container, Text, Vignette} from "./../partials"
+import {AspectRatio, Container, Text, Vignette, Image} from "./../partials"
 import {motion, animatePresence} from "framer-motion"
 import animation from "./../../scripts/animations"
-import Image from "next/image"
+// import Image from "next/image"
 
 const HeaderWrap = styled(Container)`
 `;

@@ -227,7 +227,11 @@ export const Image = (props) => {
             alt={props.alt} 
             priority={props.priority} 
             layout={props.layout} 
-            objectFit={props.objectFit}/>
+            objectFit={props.objectFit}
+            quality={40}
+
+        />
+            
     </>)
 }
 
