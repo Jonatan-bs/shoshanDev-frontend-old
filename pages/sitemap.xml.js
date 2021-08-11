@@ -8,7 +8,7 @@ const createSitemap = (posts, path) => `
             if(no_front) return;
             return `
                     <url>
-                        <loc>${`${process.env.URL}/${full_slug? full_slug : path? path+ "/"+slug : slug}`}</loc>
+                        <loc>${`${process.env.NEXT_PUBLIC_VERCEL_URL || process.env.NEXT_PUBLIC_FRONTEND_URL}/${full_slug? full_slug : path? path+ "/"+slug : slug}`}</loc>
                     </url>
                 `;
           })
@@ -17,7 +17,7 @@ const createSitemap = (posts, path) => `
     `;
 const createSitemapManuel = (full_slug) => `
         <url>
-            <loc>${`${process.env.URL}/${full_slug}`}</loc>
+            <loc>${`${process.env.NEXT_PUBLIC_VERCEL_URL || process.env.NEXT_PUBLIC_FRONTEND_URL}/${full_slug}`}</loc>
         </url>
     `
 
@@ -32,9 +32,9 @@ export default Sitemap;
 
 
 export async function getServerSideProps(ctx){
-    let request = await fetch(process.env.NEXT_PUBLIC_STRAPI_API_URL+"/pages");
+    let request = await fetch(process.env.NEXT_PUBLIC_VERCEL_URL || process.env.NEXT_PUBLIC_BACKEND_URL+"/pages");
     const pages = await request.json();
-    request = await fetch(process.env.NEXT_PUBLIC_STRAPI_API_URL+"/projects");
+    request = await fetch(process.env.NEXT_PUBLIC_VERCEL_URL || process.env.NEXT_PUBLIC_BACKEND_URL+"/projects");
     const projects = await request.json();
 
     ctx.res.setHeader('Content-Type', 'text/xml')
